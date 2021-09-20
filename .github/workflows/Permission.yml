@@ -1,0 +1,24 @@
+name: Self Host Runners
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Commit_Changes:
+    runs-on: windows-latest
+    env:
+      RUNNER_DEBUG: 1
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+        
+        
+    - name: Who-am-i action
+      uses: microsoft/powerplatform-actions/who-am-i@v0
+      with:
+        environment-url: 'https://org01dd3c82.crm4.dynamics.com/'
+        app-id: ${{ secrets.APPID }}
+        client-secret: ${{ secrets.CLIENT_SECRET }}
+        tenant-id: ${{ secrets.TENANT_ID }}
